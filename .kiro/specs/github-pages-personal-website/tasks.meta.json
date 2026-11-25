@@ -1,0 +1,473 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Create project structure and HTML foundation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890209
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615900943
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616048946
+      }
+    ],
+    "2.1 Define CSS custom properties for dark theme palette": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890345
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616053458
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616336057
+      }
+    ],
+    "2.2 Implement grid background pattern": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890454
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616054078
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616335060
+      }
+    ],
+    "2.3 Create CSS reset and base styles": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890537
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616054607
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616336370
+      }
+    ],
+    "3.1 Create fixed navigation HTML structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890611
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616341473
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616789153
+      }
+    ],
+    "3.2 Style navigation bar with dark theme": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890684
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616794017
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616948630
+      }
+    ],
+    "3.3 Implement responsive mobile menu": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890760
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616953102
+      }
+    ],
+    "4.1 Create hero HTML with terminal window design": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890845
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616341836
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616789588
+      }
+    ],
+    "4.2 Style terminal with dark console aesthetic": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890928
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616794314
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616948178
+      }
+    ],
+    "4.3 Create blinking cursor animation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615890994
+      },
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616953619
+      }
+    ],
+    "5.1 Write boot sequence JavaScript module": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891063
+      }
+    ],
+    "5.2 Initialize boot sequence on page load": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891129
+      }
+    ],
+    "6.1 Build project data structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891194
+      }
+    ],
+    "6.2 Create filter bar HTML and styles": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891275
+      }
+    ],
+    "6.3 Implement project card HTML structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891341
+      }
+    ],
+    "6.4 Style project cards with grid layout": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891411
+      }
+    ],
+    "7.1 Write filter JavaScript module": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891488
+      }
+    ],
+    "7.2 Attach filter event listeners": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891566
+      }
+    ],
+    "8.1 Create timeline HTML structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891645
+      }
+    ],
+    "8.2 Style timeline with responsive layouts": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891728
+      }
+    ],
+    "8.3 Prepare timeline for scroll reveal": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891804
+      }
+    ],
+    "9.1 Create scroll reveal JavaScript module": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891879
+      }
+    ],
+    "9.2 Apply scroll reveal to multiple elements": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615891960
+      }
+    ],
+    "10.1 Embed SVG with responsive container": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892028
+      }
+    ],
+    "10.2 Apply CSS filters for dark theme adaptation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892095
+      }
+    ],
+    "11.1 Create CLI HTML structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892162
+      }
+    ],
+    "11.2 Style CLI with terminal aesthetics": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892232
+      }
+    ],
+    "11.3 Implement CLI command interpreter": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892306
+      }
+    ],
+    "11.4 Add CLI input handling and history": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892377
+      }
+    ],
+    "12.1 Build footer HTML structure": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892478
+      }
+    ],
+    "12.2 Style footer with theme consistency": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892561
+      }
+    ],
+    "13.1 Add smooth scroll functionality": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892629
+      }
+    ],
+    "13.2 Implement active section detection": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892705
+      }
+    ],
+    "14.1 Add mobile-first media queries": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892782
+      }
+    ],
+    "14.2 Ensure mobile touch targets": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892864
+      }
+    ],
+    "14.3 Optimize typography for all screen sizes": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615892948
+      }
+    ],
+    "15.1 Define keyframe animations": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893028
+      }
+    ],
+    "15.2 Apply transition standards": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893107
+      }
+    ],
+    "16.1 Inline critical CSS and JavaScript": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893191
+      }
+    ],
+    "16.2 Optimize asset loading": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893285
+      }
+    ],
+    "16.3 Implement deferred initialization": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893372
+      }
+    ],
+    "17.1 Add vendor prefixes and fallbacks": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893462
+      }
+    ],
+    "18.1 Enhance semantic HTML": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893548
+      }
+    ],
+    "18.2 Ensure keyboard navigation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893629
+      }
+    ],
+    "18.3 Verify color contrast compliance": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893706
+      }
+    ],
+    "19.1 Wire all JavaScript modules together": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893787
+      }
+    ],
+    "19.2 Cross-browser testing": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893866
+      }
+    ],
+    "19.3 Responsive testing": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615893966
+      }
+    ],
+    "19.4 Performance validation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615894067
+      }
+    ],
+    "20. Checkpoint - Final review and user validation": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615894164
+      }
+    ],
+    "21.1 Verify repository configuration": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615894249
+      }
+    ],
+    "21.2 Configure GitHub Pages settings": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615894330
+      }
+    ],
+    "21.3 Final deployment verification": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795615894411
+      }
+    ],
+    "2. Implement CSS theme system and global styles": [
+      {
+        "executionId": "8d246146-fe37-476c-84c4-e8cf875e15b8",
+        "chatSessionId": "sess_c6c5e9a5-6db2-4e43-86b2-7bdb7802ea45",
+        "timestamp": 1795616336467
+      }
+    ]
+  }
+}

@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ping Chun (Junwu0615) - Data Engineer transitioning into Platform Engineering. Self-hosted platform, reference architecture, and validation environment.">
+  <meta name="author" content="Ping Chun (Junwu0615)">
+  <meta name="keywords" content="Data Engineering, Platform Engineering, Kubernetes, GitOps, Airflow, Kafka, Terraform, Ansible">
+  <title>Ping Chun (Junwu0615) | Platform Engineering Portfolio</title>
+
+  <style>
+    :root {
+      --color-bg-primary: #0B0F14;
+      --color-bg-secondary: #111827;
+      --color-bg-tertiary: #1F2937;
+      --color-accent-primary: #06B6D4;
+      --color-accent-secondary: #10B981;
+      --color-text-primary: #F9FAFB;
+      --color-text-secondary: #D1D5DB;
+      --color-text-muted: #9CA3AF;
+      --color-border: #374151;
+      --color-border-light: #4B5563;
+      --color-success: #10B981;
+      --color-error: #EF4444;
+      --color-warning: #F59E0B;
+      --color-info: #06B6D4;
+
+      --font-mono: 'Fira Code', 'JetBrains Mono', 'Consolas', 'Monaco', monospace;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-base: 1rem;
+      --font-size-lg: 1.125rem;
+      --font-size-xl: 1.35rem;
+      --font-size-2xl: clamp(1.5rem, 3.5vw, 2rem);
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-full: 9999px;
+
+      --shadow-glow-cyan: 0 0 20px rgba(6, 182, 212, 0.28);
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      --z-fixed: 1000;
+      --container-xl: 1240px;
+    }
+
+    :root[data-theme="light"] {
+      --color-bg-primary: #F3F4F6;
+      --color-bg-secondary: #FFFFFF;
+      --color-bg-tertiary: #E5E7EB;
+      --color-accent-primary: #0284C7;
+      --color-accent-secondary: #059669;
+      --color-text-primary: #111827;
+      --color-text-secondary: #374151;
+      --color-text-muted: #6B7280;
+      --color-border: #D1D5DB;
+      --color-border-light: #9CA3AF;
+    }
+
+    :root[data-theme="light"] body::before {
+      background-image:
+        repeating-linear-gradient(0deg, rgba(2, 132, 199, 0.05) 0px, transparent 1px, transparent 50px, rgba(2, 132, 199, 0.05) 51px),
+        repeating-linear-gradient(90deg, rgba(2, 132, 199, 0.05) 0px, transparent 1px, transparent 50px, rgba(2, 132, 199, 0.05) 51px);
+    }
+
+    :root[data-theme="light"] .architecture-diagram {
+      filter: none;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+    }
+
+    body {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-base);
+      line-height: 1.65;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(6, 182, 212, 0.035) 0px, transparent 1px, transparent 50px, rgba(6, 182, 212, 0.035) 51px),
+        repeating-linear-gradient(90deg, rgba(6, 182, 212, 0.035) 0px, transparent 1px, transparent 50px, rgba(6, 182, 212, 0.035) 51px);
+      pointer-events: none;
+    }
+
+    a {
+      color: var(--color-accent-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover, a:focus-visible {
+      color: var(--color-accent-secondary);
+    }
+
+    button, input, select {
+      font: inherit;
+      color: inherit;
+      background: transparent;
+      border: none;
+    }
+
+    button, select {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--color-accent-primary);
+      outline-offset: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--color-accent-primary);
+      color: var(--color-bg-primary);
+      padding: var(--space-sm) var(--space-md);
+      z-index: 2000;
+      font-weight: 700;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Navbar - Fixed single row with right-aligned controls */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background-color: rgba(11, 15, 20, 0.94);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+      z-index: var(--z-fixed);
+    }
+
+    :root[data-theme="light"] .navbar {
+      background-color: rgba(255, 255, 255, 0.92);
+    }
+
+    .nav-container {
+      max-width: var(--container-xl);
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 700;
+      font-size: var(--font-size-lg);
+      color: var(--color-accent-primary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-accent-primary);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-md);
+      min-width: 0;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      list-style: none;
+      flex-shrink: 0;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 0 10px;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      border-top: 2px solid transparent;
+      transition: color var(--transition-fast), border-color var(--transition-fast);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-accent-primary);
+      border-bottom-color: var(--color-accent-primary);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .tool-btn {
+      height: 30px;
+      padding: 0 9px;
+      font-size: var(--font-size-xs);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-secondary);
+      background: var(--color-bg-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      transition: all var(--transition-fast);
+    }
+
+    .tool-btn:hover,
+    .tool-btn.active {
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .vol-slider {
+      width: 58px;
+      accent-color: var(--color-accent-primary);
+      cursor: pointer;
+    }
+
+    /* Audio Source Popover */
+    .audio-popover {
+      display: none;
+      position: fixed;
+      top: 72px;
+      right: var(--space-lg);
+      width: min(360px, calc(100vw - 2rem));
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-glow-cyan);
+      z-index: calc(var(--z-fixed) + 5);
+      font-size: var(--font-size-xs);
+    }
+
+    .audio-popover.open {
+      display: block;
+    }
+
+    .audio-popover label {
+      display: block;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+
+    .audio-popover select,
+    .audio-popover input[type="text"] {
+      width: 100%;
+      padding: 6px 8px;
+      margin-bottom: var(--space-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-bg-primary);
+      color: var(--color-text-primary);
+    }
+
+    .audio-hint {
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .yt-box {
+      margin-top: var(--space-sm);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: none;
+    }
+
+    .yt-box.active {
+      display: block;
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hamburger, .hamburger::before, .hamburger::after {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--color-text-primary);
+      transition: transform var(--transition-normal), background-color var(--transition-normal);
+      position: relative;
+    }
+
+    .hamburger::before, .hamburger::after {
+      content: '';
+      position: absolute;
+      left: 0;
+    }
+
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+
+    .nav-toggle[aria-expanded="true"] .hamburger { background: transparent; }
+    .nav-toggle[aria-expanded="true"] .hamburger::before { transform: translateY(6px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .hamburger::after { transform: translateY(-6px) rotate(-45deg); }
+
+    @media (max-width: 960px) {
+      .vol-slider { display: none; }
+    }
+
+    @media (max-width: 820px) {
+      .nav-toggle { display: flex; }
+      .nav-menu {
+        position: fixed;
+        top: 64px;
+        right: 0;
+        width: 230px;
+        height: calc(100vh - 64px);
+        background: var(--color-bg-secondary);
+        border-left: 1px solid var(--color-border);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-lg);
+        gap: var(--space-sm);
+        transform: translateX(100%);
+        transition: transform var(--transition-normal);
+      }
+      .nav-menu.open { transform: translateX(0); }
+    }
+
+    /* Sections Common */
+    section {
+      max-width: var(--container-xl);
+      margin: 0 auto;
+      padding: var(--space-3xl) var(--space-lg);
+    }
+
+    .section-title {
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-xl);
+      color: var(--color-text-primary);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-title::before {
+      content: '##';
+      color: var(--color-accent-primary);
+      font-size: var(--font-size-lg);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: calc(var(--space-3xl) + 48px);
+    }
+
+    .terminal-window {
+      width: 100%;
+      max-width: 860px;
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: var(--space-xl);
+    }
+
+    .terminal-header {
+      background: var(--color-bg-tertiary);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .terminal-button {
+      width: 12px;
+      height: 12px;
+      border-radius: var(--radius-full);
+    }
+    .terminal-button.close { background: #EF4444; }
+    .terminal-button.minimize { background: #F59E0B; }
+    .terminal-button.maximize { background: #10B981; }
+
+    .terminal-body {
+      padding: var(--space-xl);
+      min-height: 170px;
+      color: var(--color-accent-secondary);
+      font-size: var(--font-size-sm);
+    }
+
+    .boot-line {
+      margin-bottom: var(--space-xs);
+    }
+
+    .prompt {
+      color: var(--color-accent-primary);
+      margin-right: var(--space-sm);
+      font-weight: 700;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 9px;
+      height: 1.15em;
+      background: var(--color-accent-primary);
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 860px;
+    }
+
+    .hero-name {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-role {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero-slogan {
+      font-size: var(--font-size-base);
+      color: var(--color-text-muted);
+      font-style: italic;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .cta-btn {
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-sm);
+      font-weight: 600;
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-fast);
+    }
+
+    .cta-primary {
+      background: var(--color-accent-primary);
+      color: var(--color-bg-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    .cta-primary:hover {
+      background: transparent;
+      color: var(--color-accent-primary);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+
+    .cta-secondary:hover {
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    /* Projects & Filter */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+
+    .filter-btn {
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--color-accent-primary);
+      color: var(--color-bg-primary);
+      background: var(--color-accent-primary);
+      font-weight: 600;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .project-card {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: var(--space-md);
+      transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--color-accent-primary);
+      box-shadow: var(--shadow-glow-cyan);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .project-name {
+      font-size: var(--font-size-lg);
+      color: var(--color-text-primary);
+    }
+
+    .project-category {
+      font-size: var(--font-size-xs);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--color-accent-primary);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      white-space: nowrap;
+    }
+
+    .project-description {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .project-link {
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      align-self: flex-start;
+    }
+
+    /* Evolution Timeline */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .timeline-stage {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity var(--transition-slow), transform var(--transition-slow);
+    }
+
+    .timeline-stage.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stage-marker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--color-accent-secondary);
+      color: var(--color-accent-secondary);
+      font-weight: 700;
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--space-md);
+    }
+
+    .stage-title {
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--space-sm);
+    }
+
+    .stage-description {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    /* Architecture Diagram */
+    .diagram-container {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+    }
+
+    .architecture-diagram {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-md);
+      filter: invert(0.92) hue-rotate(180deg) contrast(1.05);
+    }
+
+    /* Mini-CLI */
+    .cli-terminal {
+      background: var(--color-bg-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .cli-output {
+      padding: var(--space-lg);
+      max-height: 280px;
+      overflow-y: auto;
+      font-size: var(--font-size-sm);
+    }
+
+    .cli-line {
+      margin-bottom: var(--space-xs);
+      white-space: pre-wrap;
+    }
+
+    .cli-cmd { color: var(--color-accent-primary); }
+    .cli-info { color: var(--color-text-secondary); }
+    .cli-success { color: var(--color-accent-secondary); }
+    .cli-error { color: var(--color-error); }
+
+    .cli-input-line {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--color-bg-tertiary);
+      border-top: 1px solid var(--color-border);
+      font-size: var(--font-size-sm);
+    }
+
+    .cli-prompt {
+      color: var(--color-accent-secondary);
+      white-space: nowrap;
+    }
+
+    .cli-input {
+      flex: 1;
+      min-width: 0;
+      color: var(--color-text-primary);
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-2xl) var(--space-lg);
+      text-align: center;
+    }
+
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-md);
+      font-size: var(--font-size-sm);
+    }
+
+    .footer-text {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+    }
+  </style>
+</head>
+<body>
+  <a href="#hero" class="skip-link">Skip to main content</a>
+
+  <nav id="navbar" class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" aria-label="Home - Ping Chun Portfolio">
+        <img src="https://github.com/Junwu0615.png" alt="Junwu0615 avatar" class="nav-avatar">
+        <span>PC</span>
+      </a>
+
+      <div class="nav-right">
+        <ul id="nav-menu" class="nav-menu" role="menubar">
+          <li role="none"><a href="#hero" class="nav-link active" role="menuitem">Home</a></li>
+          <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+          <li role="none"><a href="#evolution" class="nav-link" role="menuitem">Evolution</a></li>
+          <li role="none"><a href="#architecture" class="nav-link" role="menuitem">Architecture</a></li>
+          <li role="none"><a href="#cli" class="nav-link" role="menuitem">CLI</a></li>
+        </ul>
+
+        <div class="nav-controls">
+          <button id="theme-toggle" type="button" class="tool-btn" aria-label="Toggle light and dark theme">☀ LIGHT</button>
+          <button id="audio-toggle" type="button" class="tool-btn" aria-pressed="false" aria-label="Toggle audio">♪ OFF</button>
+          <button id="audio-next" type="button" class="tool-btn" title="Next track" aria-label="Next track">⏭</button>
+          <button id="audio-config-btn" type="button" class="tool-btn" aria-expanded="false" aria-label="Configure audio source">⚙</button>
+          <input id="audio-volume" type="range" class="vol-slider" min="0" max="1" step="0.05" value="0.25" aria-label="Audio volume">
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+          <span class="hamburger" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div id="audio-popover" class="audio-popover" role="dialog" aria-label="Audio source settings">
+    <label for="audio-mode">Audio Source Mode</label>
+    <select id="audio-mode">
+      <option value="url" selected>Local Audio Playlist</option>
+      <option value="synth">Built-in Ambient Synth (Zero Asset)</option>
+      <option value="youtube">YouTube Link / Video ID</option>
+    </select>
+
+    <div id="playlist-wrap">
+      <label for="audio-track-select">Local Audio Playlist</label>
+      <select id="audio-track-select">
+        <option value="">Loading playlist…</option>
+      </select>
+    </div>
+    <div id="youtube-input-wrap">
+      <label id="youtube-input-label" for="audio-source-input">YouTube URL or Video ID</label>
+      <input id="audio-source-input" type="text" placeholder="https://www.youtube.com/watch?v=...">
+    </div>
+
+    <p id="audio-hint" class="audio-hint">
+      Local audio tracks are loaded from the generated playlist in ./assets/audio/playlist.json.
+    </p>
+
+    <div id="yt-box" class="yt-box"></div>
+  </div>
+
+  <audio id="bg-audio" preload="metadata" data-default-src="./assets/audio/xxx.mp3"></audio>
+
+  <section id="hero" class="hero-section" aria-labelledby="hero-title">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <span class="terminal-button close" aria-hidden="true"></span>
+        <span class="terminal-button minimize" aria-hidden="true"></span>
+        <span class="terminal-button maximize" aria-hidden="true"></span>
+      </div>
+      <div class="terminal-body">
+        <div id="boot-sequence" class="boot-sequence" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="hero-content" class="hero-content">
+      <h1 id="hero-title" class="hero-name">Ping Chun (Junwu0615)</h1>
+      <p class="hero-role">Data Engineer → Platform Engineering</p>
+      <p class="hero-slogan">Platform Engineering Through Evolution, Not Accumulation</p>
+      <div class="hero-cta">
+        <a href="#architecture" class="cta-btn cta-primary">Explore Architecture</a>
+        <a href="https://github.com/Junwu0615" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">GitHub</a>
+        <a href="https://www.linkedin.com/in/pc-wu-16a1602a7/" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects-section" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="section-title">Platform Genesis Universe</h2>
+
+    <div class="filter-bar" role="toolbar" aria-label="Project filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="platform-engineering">Platform Engineering</button>
+      <button class="filter-btn" data-filter="devops">DevOps & IaC</button>
+      <button class="filter-btn" data-filter="data-engineering">Data Engineering</button>
+      <button class="filter-btn" data-filter="mlops">MLOps & AIOps</button>
+      <button class="filter-btn" data-filter="analytics">Analytics</button>
+    </div>
+
+    <div id="projects-grid" class="projects-grid"></div>
+  </section>
+
+  <section id="evolution" class="evolution-section" aria-labelledby="evolution-title">
+    <h2 id="evolution-title" class="section-title">Engineering Evolution</h2>
+    <div class="timeline">
+      <article class="timeline-stage" data-stage="1">
+        <div class="stage-marker">1</div>
+        <h3 class="stage-title">Data Pipelines & Streaming</h3>
+        <p class="stage-description">
+          Built idempotent ETL workflows, Airflow DAGs, Kafka streaming, CDC, and lakehouse storage from real data pipeline reliability challenges.
+        </p>
+      </article>
+      <article class="timeline-stage" data-stage="2">
+        <div class="stage-marker">2</div>
+        <h3 class="stage-title">Shared Runtime & Edge Automation</h3>
+        <p class="stage-description">
+          Standardized reusable libraries, container runtimes, Ansible/Make automation, and edge deployment workflows across environments.
+        </p>
+      </article>
+      <article class="timeline-stage" data-stage="3">
+        <div class="stage-marker">3</div>
+        <h3 class="stage-title">Platform & GitOps Control Plane</h3>
+        <p class="stage-description">
+          Evolving data foundations into a self-hosted reference platform with Terraform, Kubernetes, GitOps, secrets management, and observability.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section id="architecture" class="architecture-section" aria-labelledby="architecture-title">
+    <h2 id="architecture-title" class="section-title">System Architecture</h2>
+    <div class="diagram-container">
+      <img src="./assets/svg/Architecture-Diagram-v4.2.svg"
+           alt="Platform Genesis architecture diagram"
+           class="architecture-diagram"
+           loading="lazy"
+           decoding="async">
+    </div>
+  </section>
+
+  <section id="cli" class="cli-section" aria-labelledby="cli-title">
+    <h2 id="cli-title" class="section-title">Interactive Terminal</h2>
+    <div class="cli-terminal">
+      <div id="cli-output" class="cli-output" role="log" aria-live="polite">
+        <div class="cli-line cli-info">Welcome to PC Platform Console. Type 'help' to list commands.</div>
+      </div>
+      <div class="cli-input-line">
+        <label for="cli-input" class="cli-prompt">pc@platform-genesis:~$</label>
+        <input id="cli-input" type="text" class="cli-input" autocomplete="off" spellcheck="false" placeholder="help | whoami | stack | links | clear">
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://github.com/Junwu0615" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/pc-wu-16a1602a7/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://www.cake.me/me/Ping-Chun-Wu" target="_blank" rel="noopener noreferrer">Cake</a>
+      <a href="https://github.com/Junwu0615/Junwu0615-Analytics" target="_blank" rel="noopener noreferrer">Analytics</a>
+    </div>
+    <p class="footer-text">© <span id="year"></span> Ping Chun (Junwu0615) · Self-Hosted Reference Architecture</p>
+  </footer>
+
+  <script>
+    const PROJECTS = [
+      { name: 'PG-Core', slug: 'PG-Core', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Kubernetes, GitOps, Observability, IaC, and Secrets Management core control plane.' },
+      { name: 'PG-Infrastructure', slug: 'PG-Infrastructure', category: 'devops', badge: 'DevOps & IaC', desc: 'GKE, Kubernetes, Terraform, Ansible, Docker, and idempotent Makefile automation.' },
+      { name: 'PG-Synapse', slug: 'PG-Synapse', category: 'data-engineering', badge: 'Data Engineering', desc: 'Apache Airflow, Kafka, CDC, and Iceberg Lakehouse data backbone.' },
+      { name: 'PG-Airflow-DAGs', slug: 'PG-Airflow-DAGs', category: 'data-engineering', badge: 'Data Engineering', desc: 'Orchestrated Airflow DAG workflows and scheduled data processing pipelines.' },
+      { name: 'PG-APP-Core', slug: 'PG-APP-Core', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Core application runtime built on PG-Shared-Lib and Python.' },
+      { name: 'PG-Shared-Lib', slug: 'PG-Shared-Lib', category: 'devops', badge: 'DevOps & IaC', desc: 'Shared EntryPoint, Logger, MqttServer, and Kafka producer/consumer managers.' },
+      { name: 'PG-Edge-Container', slug: 'PG-Edge-Container', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Lightweight edge container workload with MQTT and SQLite persistence.' },
+      { name: 'PG-Cortex', slug: 'PG-Cortex', category: 'mlops', badge: 'MLOps & AIOps', desc: 'MLflow, Kubeflow, Ray, LLMOps, and model serving experimentation environment.' },
+      { name: 'PG-Sentinel', slug: 'PG-Sentinel', category: 'mlops', badge: 'MLOps & AIOps', desc: 'AIOps, chaos engineering, reliability validation, and automated remediation.' },
+      { name: 'PG-Analytics', slug: 'PG-Analytics', category: 'analytics', badge: 'Analytics', desc: 'GitHub traffic, repository metrics, growth trends, and historical statistics.' }
+    ];
+
+    const grid = document.getElementById('projects-grid');
+    grid.innerHTML = PROJECTS.map(p => `
+      <article class="project-card" data-category="${p.category}">
+        <div class="card-header">
+          <h3 class="project-name">${p.name}</h3>
+          <span class="project-category">${p.badge}</span>
+        </div>
+        <p class="project-description">${p.desc}</p>
+        <a class="project-link" href="https://github.com/Junwu0615/${p.slug}" target="_blank" rel="noopener noreferrer">View on GitHub →</a>
+      </article>
+    `).join('');
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.project-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          card.classList.toggle('hidden', filter !== 'all' && card.dataset.category !== filter);
+        });
+      });
+    });
+
+    const bootEl = document.getElementById('boot-sequence');
+    const lines = [
+      '$ init --mode=platform-evolution',
+      '[OK] Loaded Data Engineering foundation (Airflow / Kafka / Lakehouse)',
+      '[OK] Mounted self-hosted reference architecture: Platform Genesis',
+      '$ echo "Platform Engineering Through Evolution, Not Accumulation"'
+    ];
+    (async function runBoot() {
+      for (const line of lines) {
+        const div = document.createElement('div');
+        div.className = 'boot-line';
+        bootEl.appendChild(div);
+        for (let i = 0; i < line.length; i++) {
+          div.textContent += line[i];
+          await new Promise(r => setTimeout(r, 14));
+        }
+        await new Promise(r => setTimeout(r, 140));
+      }
+      const cursorLine = document.createElement('div');
+      cursorLine.className = 'boot-line';
+      cursorLine.innerHTML = '<span class="prompt">$</span><span class="cursor"></span>';
+      bootEl.appendChild(cursorLine);
+    })();
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.timeline-stage').forEach(el => observer.observe(el));
+
+    const toggle = document.querySelector('.nav-toggle');
+    const menu = document.getElementById('nav-menu');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    window.addEventListener('scroll', () => {
+      let current = 'hero';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 140) current = sec.id;
+      });
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    }, { passive: true });
+
+    const cliInput = document.getElementById('cli-input');
+    const cliOutput = document.getElementById('cli-output');
+    function appendCli(text, cls = 'cli-info') {
+      const div = document.createElement('div');
+      div.className = `cli-line ${cls}`;
+      div.textContent = text;
+      cliOutput.appendChild(div);
+      cliOutput.scrollTop = cliOutput.scrollHeight;
+    }
+
+    const COMMANDS = {
+      help: () => 'Available commands: help, whoami, stack, links, clear',
+      whoami: () => 'Ping Chun (Junwu0615) — Data Engineer transitioning into Platform Engineering.',
+      stack: () => 'Platform & Infra: Kubernetes, Terraform, Ansible, GitOps, Docker, Makefile\nData & Streaming: Apache Airflow, Kafka, CDC, Iceberg, PostgreSQL',
+      links: () => 'GitHub: https://github.com/Junwu0615\nLinkedIn: https://www.linkedin.com/in/pc-wu-16a1602a7/\nCake: https://www.cake.me/me/Ping-Chun-Wu',
+      clear: () => { cliOutput.innerHTML = ''; return null; }
+    };
+
+    cliInput.addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const raw = cliInput.value.trim();
+      cliInput.value = '';
+      if (!raw) return;
+      appendCli(`pc@platform-genesis:~$ ${raw}`, 'cli-cmd');
+      const fn = COMMANDS[raw.toLowerCase()];
+      if (fn) {
+        const res = fn();
+        if (res) appendCli(res, 'cli-success');
+      } else {
+        appendCli(`Command not found: ${raw}. Type 'help'.`, 'cli-error');
+      }
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('pc-theme') || 'dark';
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '🌙 DARK';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeBtn.textContent = '☀ LIGHT';
+      }
+      localStorage.setItem('pc-theme', theme);
+    }
+    applyTheme(savedTheme);
+    themeBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isLight ? 'dark' : 'light');
+    });
+
+    // Multi-mode Audio Controller (Generated Playlist / Synth / YouTube)
+    const audioBtn = document.getElementById('audio-toggle');
+    const nextBtn = document.getElementById('audio-next');
+    const cfgBtn = document.getElementById('audio-config-btn');
+    const popover = document.getElementById('audio-popover');
+    const modeSelect = document.getElementById('audio-mode');
+    const youtubeInputWrap = document.getElementById('youtube-input-wrap');
+    const youtubeInputLabel = document.getElementById('youtube-input-label');
+    const sourceInput = document.getElementById('audio-source-input');
+    const playlistWrap = document.getElementById('playlist-wrap');
+    const trackSelect = document.getElementById('audio-track-select');
+    const ytBox = document.getElementById('yt-box');
+    const bgAudio = document.getElementById('bg-audio');
+    const volSlider = document.getElementById('audio-volume');
+
+    const PLAYLIST_MANIFEST = './assets/audio/playlist.json';
+    const DEFAULT_TRACK = bgAudio.dataset.defaultSrc || '';
+    let playlist = [];
+    let audioCtx = null;
+    let masterGain = null;
+    let isPlaying = false;
+
+    function extractYouTubeId(input) {
+      if (!input) return '';
+      const trimmed = input.trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(trimmed)) return trimmed;
+      const match = trimmed.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : '';
+    }
+
+    function setAudioState(playing) {
+      isPlaying = playing;
+      audioBtn.textContent = playing ? '♫ ON' : '♪ OFF';
+      audioBtn.classList.toggle('active', playing);
+      audioBtn.setAttribute('aria-pressed', String(playing));
+    }
+
+    async function loadPlaylist() {
+      try {
+        const response = await fetch(PLAYLIST_MANIFEST, { cache: 'no-cache' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        playlist = Array.isArray(data) ? data : (Array.isArray(data.tracks) ? data.tracks : []);
+
+        trackSelect.replaceChildren();
+        if (!playlist.length) {
+          trackSelect.add(new Option('No tracks available', ''));
+          return;
+        }
+
+        playlist.forEach(track => {
+          const src = typeof track === 'string' ? track : track.src;
+          const label = typeof track === 'string'
+            ? src.split('/').pop()
+            : (track.title || src.split('/').pop());
+          if (!src) return;
+          trackSelect.add(new Option(label, src));
+        });
+
+        // Prefer configured default if it exists in the generated list; otherwise first track.
+        const match = [...trackSelect.options].find(option => option.value === DEFAULT_TRACK);
+        trackSelect.value = match ? DEFAULT_TRACK : (trackSelect.options[0]?.value || '');
+      } catch (error) {
+        console.warn('Playlist manifest unavailable:', error);
+        trackSelect.replaceChildren(new Option('Playlist unavailable', ''));
+      }
+    }
+
+    function getSelectedTrack() {
+      return trackSelect.value || DEFAULT_TRACK;
+    }
+
+    function syncSourceUI() {
+      const mode = modeSelect.value;
+      youtubeInputWrap.style.display = mode === 'youtube' ? 'block' : 'none';
+      playlistWrap.style.display = mode === 'url' ? 'block' : 'none';
+
+      if (mode === 'synth') {
+        ytBox.classList.remove('active');
+      } else if (mode === 'url') {
+        ytBox.classList.remove('active');
+      } else {
+        playlistWrap.style.display = 'none';
+        youtubeInputLabel.textContent = 'YouTube URL or Video ID';
+        sourceInput.placeholder = 'https://www.youtube.com/watch?v=...';
+      }
+    }
+
+    cfgBtn.addEventListener('click', () => {
+      const open = popover.classList.toggle('open');
+      cfgBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    modeSelect.addEventListener('change', async () => {
+      await stopAllAudio();
+      syncSourceUI();
+    });
+
+    trackSelect.addEventListener('change', async () => {
+      // When music is already playing, switch to the selected track immediately.
+      if (isPlaying && modeSelect.value === 'url') {
+        try {
+          await startSelectedAudio();
+        } catch (error) {
+          console.warn('Track switch failed:', error);
+          setAudioState(false);
+        }
+      }
+    });
+
+    async function startSynth() {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
+      masterGain = audioCtx.createGain();
+      masterGain.gain.value = Number(volSlider.value) * 0.18;
+
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 420;
+
+      [73.42, 110.0, 146.83].forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        osc.type = idx === 1 ? 'triangle' : 'sine';
+        osc.frequency.value = freq;
+        osc.detune.value = (idx - 1) * 4;
+        osc.connect(filter);
+        osc.start();
+      });
+
+      filter.connect(masterGain);
+      masterGain.connect(audioCtx.destination);
+    }
+
+    async function stopAllAudio() {
+      if (audioCtx) {
+        await audioCtx.close();
+        audioCtx = null;
+        masterGain = null;
+      }
+      bgAudio.pause();
+      ytBox.innerHTML = '';
+      ytBox.classList.remove('active');
+      setAudioState(false);
+    }
+
+    async function startSelectedAudio() {
+      const mode = modeSelect.value;
+      if (mode === 'synth') {
+        await startSynth();
+      } else if (mode === 'url') {
+        const url = getSelectedTrack();
+        if (!url) throw new Error('No audio track available. Add audio files to ./assets/audio/ and regenerate the playlist.');
+        bgAudio.src = url;
+        bgAudio.volume = Number(volSlider.value);
+        await bgAudio.play();
+      } else {
+        const vid = extractYouTubeId(sourceInput.value);
+        if (!vid) {
+          popover.classList.add('open');
+          sourceInput.focus();
+          throw new Error('Invalid YouTube URL/ID');
+        }
+        ytBox.innerHTML = `<iframe width="100%" height="180" src="https://www.youtube.com/embed/${vid}?autoplay=1&loop=1&playlist=${vid}" title="YouTube audio player" allow="autoplay; encrypted-media" allowfullscreen style="border:0;"></iframe>`;
+        ytBox.classList.add('active');
+      }
+      setAudioState(true);
+    }
+
+    async function playTrackAt(index) {
+      if (!playlist.length) return;
+      const normalized = (index + playlist.length) % playlist.length;
+      const item = playlist[normalized];
+      const src = typeof item === 'string' ? item : item.src;
+      if (!src) return;
+      trackSelect.value = src;
+      modeSelect.value = 'url';
+      syncSourceUI();
+      await stopAllAudio();
+      bgAudio.src = src;
+      bgAudio.volume = Number(volSlider.value);
+      await bgAudio.play();
+      setAudioState(true);
+    }
+
+    nextBtn.addEventListener('click', async () => {
+      if (!playlist.length) {
+        popover.classList.add('open');
+        return;
+      }
+      const current = playlist.findIndex(item => (typeof item === 'string' ? item : item.src) === trackSelect.value);
+      await playTrackAt(current + 1);
+    });
+
+    // Automatically advance to the next playlist track when the current track ends.
+    bgAudio.addEventListener('ended', async () => {
+      if (modeSelect.value !== 'url' || !isPlaying || !playlist.length) return;
+      const current = playlist.findIndex(item => (typeof item === 'string' ? item : item.src) === bgAudio.src || (typeof item === 'string' ? item : item.src) === trackSelect.value);
+      await playTrackAt(current + 1);
+    });
+
+    audioBtn.addEventListener('click', async () => {
+      if (isPlaying) {
+        await stopAllAudio();
+      } else {
+        try {
+          await startSelectedAudio();
+        } catch (error) {
+          console.warn('Audio playback failed:', error);
+          setAudioState(false);
+          popover.classList.add('open');
+        }
+      }
+    });
+
+    volSlider.addEventListener('input', () => {
+      const v = Number(volSlider.value);
+      if (masterGain) masterGain.gain.value = v * 0.18;
+      bgAudio.volume = v;
+    });
+
+    // Attempt autoplay on page load. Browsers may block audible autoplay;
+    // if blocked, the audio button remains OFF until the visitor clicks it.
+    (async function initializeAudio() {
+      await loadPlaylist();
+      syncSourceUI();
+      try {
+        await startSelectedAudio();
+      } catch (error) {
+        console.info('Autoplay blocked or unavailable; waiting for user interaction.', error);
+        setAudioState(false);
+      }
+    })();
+  </script>
+</body>
+</html>

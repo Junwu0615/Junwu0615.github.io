@@ -1,0 +1,49 @@
+請為我打造一個可直接部署於 GitHub Pages 的單頁式個人網站（純 HTML5 + CSS3 + 原生 JavaScript，無需任何外部建置工具或大型框架）。
+
+【個人定位與核心理念】
+- 姓名 / 代號：Ping Chun (Junwu0615)
+- 職涯定位：Data Engineer evolving into Platform Engineering（從資料管線實戰痛點出發，演進至自動化基礎設施、GitOps 與可觀測性平台）。
+- 核心標語（Slogan）："Platform Engineering Through Evolution, Not Accumulation"
+- 外部連結：
+  - GitHub: https://github.com/Junwu0615
+  - Platform Genesis 主專案: https://github.com/Junwu0615/Platform-Genesis
+  - Analytics: https://github.com/Junwu0615/Junwu0615-Analytics
+  - LinkedIn: https://www.linkedin.com/in/pc-wu-16a1602a7/
+  - Cake: https://www.cake.me/me/Ping-Chun-Wu
+
+【視覺風格與動畫要求（Systems / SRE Console 風格）】
+- 配色：深色終端機基底（#0B0F14 背景、#111827 卡片底色、#1F2937 細邊框），搭配冷青色（#06B6D4）與終端綠（#10B981）作為狀態強調色，字體使用 JetBrains Mono / Fira Code 搭配無襯線內文。
+- 動畫效果（流暢、低干擾）：
+  1. Hero 區塊模擬終端機啟動（Boot sequence / 打字機效果）帶出姓名、角色與核心標語。
+  2. 捲動時的漸進式淡入（IntersectionObserver scroll reveal）與卡片懸停時的細微邊框發光效果。
+  3. 背景有極低透明度的工程網格紋理（Subtle Grid）。
+
+【頁面 4 大區塊結構】
+1. Top Nav & Hero Terminal：
+   - 頂部狀態列顯示 `STATUS: SYSTEM ONLINE | FOCUS: PLATFORM ENGINEERING` 與導覽連結。
+   - 終端機視窗呈現個人定位、從 Data Engineering 轉型至 Platform Engineering 的簡短演進說明，以及快捷 CTA 按鈕（Explore Architecture / GitHub / LinkedIn）。
+
+2. Platform Genesis Universe（核心架構展示，附領域篩選 Tab）：
+   - 預留架構圖展示區（可載入 `./assets/svg/Architecture-Diagram-v4.2.svg` 並適配深色背景視覺）。
+   - 提供互動篩選按鈕（`All Modules`、`Infra & Core`、`Data & Event`、`Edge & Runtime`、`AIOps & Analytics`），將以下 10 個子專案分組呈現為互動卡片（點擊可連至對應 GitHub Repo）：
+     - PG-Core (Kubernetes, GitOps, Observability, IaC, Secrets Management)
+     - PG-Infrastructure (GKE, Kubernetes, Terraform, Ansible, Docker, Makefile)
+     - PG-Synapse (Airflow, Kafka, CDC, Iceberg, Lakehouse)
+     - PG-Airflow-DAGs (Airflow, DAGs)
+     - PG-APP-Core (PG-Shared-Lib, Python)
+     - PG-Shared-Lib (EntryPoint, Logger, MqttServer, KafkaConsumerManager, KafkaProducerManager)
+     - PG-Edge-Container (PG-APP-Core, MQTT, SQLite)
+     - PG-Cortex (MLflow, Kubeflow, Ray, LLMOps, Model Serving)
+     - PG-Sentinel (AIOps, Chaos Engineering, Reliability, Auto Remediation)
+     - PG-Analytics (GitHub Traffic, Repository Metrics, Growth Trend)
+
+3. Engineering Evolution（DE → Platform 演進脈絡）：
+   - 用 3 個階段卡片說明技術演進路徑：
+     - Stage 01: Data Pipeline & Streaming（Airflow, Kafka, CDC, Lakehouse 實作與數據可靠度）
+     - Stage 02: Standardization & Edge Runtime（抽離 Shared-Lib、容器化與 Edge 部署自動化）
+     - Stage 03: Platform & GitOps Control Plane（以 Terraform, K8s, GitOps 與 Observability 打造自助式平台基建）
+
+4. Interactive Mini-CLI & Footer：
+   - 內嵌一個簡易可輸入的網頁終端機元件，支援輸入 `help`、`whoami`、`stack`、`links`、`clear` 等指令，輸出格式化的文字與可點擊的聯絡連結（LinkedIn、Cake、GitHub、Analytics）。
+
+請直接輸出完整、結構清晰、具備 RWD 響應式設計的程式碼。
