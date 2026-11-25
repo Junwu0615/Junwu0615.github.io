@@ -6,6 +6,9 @@
   <meta name="description" content="Ping Chun (Junwu0615) - Data Engineer transitioning into Platform Engineering. Self-hosted platform, reference architecture, and validation environment.">
   <meta name="author" content="Ping Chun (Junwu0615)">
   <meta name="keywords" content="Data Engineering, Platform Engineering, Kubernetes, GitOps, Airflow, Kafka, Terraform, Ansible">
+  <link rel="icon" type="image/png" href="https://github.com/Junwu0615.png?size=64">
+  <link rel="apple-touch-icon" href="https://github.com/Junwu0615.png?size=180">
+  <meta name="theme-color" content="#0B0F14">
   <title>Ping Chun (Junwu0615) | Platform Engineering Portfolio</title>
 
   <style>
@@ -802,7 +805,7 @@
     <div id="yt-box" class="yt-box"></div>
   </div>
 
-  <audio id="bg-audio" preload="metadata" data-default-src="./assets/audio/xxx.mp3"></audio>
+  <audio id="bg-audio" autoplay preload="auto" data-default-src=""></audio>
 
   <section id="hero" class="hero-section" aria-labelledby="hero-title">
     <div class="terminal-window">
@@ -822,8 +825,8 @@
       <p class="hero-slogan">Platform Engineering Through Evolution, Not Accumulation</p>
       <div class="hero-cta">
         <a href="#architecture" class="cta-btn cta-primary">Explore Architecture</a>
-        <a href="https://github.com/Junwu0615" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">GitHub</a>
-        <a href="https://www.linkedin.com/in/pc-wu-16a1602a7/" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">LinkedIn</a>
+<!--        <a href="https://github.com/Junwu0615" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">GitHub</a>-->
+<!--        <a href="https://www.linkedin.com/in/pc-wu-16a1602a7/" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">LinkedIn</a>-->
       </div>
     </div>
   </section>
@@ -1278,17 +1281,47 @@
       bgAudio.volume = v;
     });
 
-    // Attempt autoplay on page load. Browsers may block audible autoplay;
-    // if blocked, the audio button remains OFF until the visitor clicks it.
-    (async function initializeAudio() {
-      await loadPlaylist();
-      syncSourceUI();
+    // Start the selected local playlist automatically on page load.
+    // Browsers may block audible autoplay until the visitor interacts with the page.
+    let playlistReady;
+    let autoplayAttempted = false;
+
+    async function attemptAutoplay() {
+      if (autoplayAttempted || isPlaying) return;
+      autoplayAttempted = true;
       try {
-        await startSelectedAudio();
+        await playlistReady;
+        if (modeSelect.value === 'url') await startSelectedAudio();
       } catch (error) {
-        console.info('Autoplay blocked or unavailable; waiting for user interaction.', error);
+        console.info('Audible autoplay was blocked or unavailable; playback will retry after user interaction.', error);
         setAudioState(false);
       }
+    }
+
+    // Register early so the first user gesture can unlock playback if autoplay is blocked.
+    const resumeAudioAfterGesture = async (event) => {
+      // Let the dedicated audio controls handle their own clicks to avoid
+      // starting playback on pointerdown and immediately toggling it off on click.
+      if (event.target.closest('#audio-toggle, #audio-next, #audio-config-btn, #audio-volume, #audio-mode, #audio-track-select, #audio-source-input')) return;
+      if (isPlaying) return;
+      try {
+        await playlistReady;
+        if (!isPlaying && modeSelect.value === 'url') await startSelectedAudio();
+      } catch (error) {
+        console.warn('Audio playback could not start after user interaction:', error);
+        setAudioState(false);
+      }
+      window.removeEventListener('pointerdown', resumeAudioAfterGesture);
+      window.removeEventListener('keydown', resumeAudioAfterGesture);
+    };
+    window.addEventListener('pointerdown', resumeAudioAfterGesture);
+    window.addEventListener('keydown', resumeAudioAfterGesture);
+
+    (async function initializeAudio() {
+      playlistReady = loadPlaylist();
+      await playlistReady;
+      syncSourceUI();
+      await attemptAutoplay();
     })();
   </script>
 </body>
