@@ -910,14 +910,14 @@
   <script>
     const PROJECTS = [
       { name: 'PG-Core', slug: 'PG-Core', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Kubernetes, GitOps, Observability, IaC, and Secrets Management core control plane.' },
-      { name: 'PG-Infrastructure', slug: 'PG-Infrastructure', category: 'devops', badge: 'DevOps & IaC', desc: 'GKE, Kubernetes, Terraform, Ansible, Docker, and idempotent Makefile automation.' },
       { name: 'PG-Synapse', slug: 'PG-Synapse', category: 'data-engineering', badge: 'Data Engineering', desc: 'Apache Airflow, Kafka, CDC, and Iceberg Lakehouse data backbone.' },
-      { name: 'PG-Airflow-DAGs', slug: 'PG-Airflow-DAGs', category: 'data-engineering', badge: 'Data Engineering', desc: 'Orchestrated Airflow DAG workflows and scheduled data processing pipelines.' },
-      { name: 'PG-APP-Core', slug: 'PG-APP-Core', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Core application runtime built on PG-Shared-Lib and Python.' },
-      { name: 'PG-Shared-Lib', slug: 'PG-Shared-Lib', category: 'devops', badge: 'DevOps & IaC', desc: 'Shared EntryPoint, Logger, MqttServer, and Kafka producer/consumer managers.' },
-      { name: 'PG-Edge-Container', slug: 'PG-Edge-Container', category: 'platform-engineering', badge: 'Platform Engineering', desc: 'Lightweight edge container workload with MQTT and SQLite persistence.' },
       { name: 'PG-Cortex', slug: 'PG-Cortex', category: 'mlops', badge: 'MLOps & AIOps', desc: 'MLflow, Kubeflow, Ray, LLMOps, and model serving experimentation environment.' },
       { name: 'PG-Sentinel', slug: 'PG-Sentinel', category: 'mlops', badge: 'MLOps & AIOps', desc: 'AIOps, chaos engineering, reliability validation, and automated remediation.' },
+      { name: 'PG-Infrastructure', slug: 'PG-Infrastructure', category: 'devops', badge: 'DevOps & IaC', desc: 'GKE, Kubernetes, Terraform, Ansible, Docker, and idempotent Makefile automation.' },
+      { name: 'PG-APP-Core', slug: 'PG-APP-Core', category: 'data-engineering', badge: 'Data Engineering', desc: 'Core application runtime built on PG-Shared-Lib and Python.' },
+      { name: 'PG-Shared-Lib', slug: 'PG-Shared-Lib', category: 'devops', badge: 'DevOps & IaC', desc: 'Shared EntryPoint, Logger, MqttServer, and Kafka producer/consumer managers.' },
+      { name: 'PG-Airflow-DAGs', slug: 'PG-Airflow-DAGs', category: 'data-engineering', badge: 'Data Engineering', desc: 'Orchestrated Airflow DAG workflows and scheduled data processing pipelines.' },
+      { name: 'PG-Edge-Container', slug: 'PG-Edge-Container', category: 'data-engineering', badge: 'Data Engineering', desc: 'Lightweight edge container workload with MQTT and SQLite persistence.' },
       { name: 'PG-Analytics', slug: 'PG-Analytics', category: 'analytics', badge: 'Analytics', desc: 'GitHub traffic, repository metrics, growth trends, and historical statistics.' }
     ];
 
@@ -1019,8 +1019,8 @@
     const COMMANDS = {
       help: () => 'Available commands: help, whoami, stack, links, clear',
       whoami: () => 'Ping Chun (Junwu0615) — Data Engineer transitioning into Platform Engineering.',
-      stack: () => 'Platform & Infra: Kubernetes, Terraform, Ansible, GitOps, Docker, Makefile\nData & Streaming: Apache Airflow, Kafka, CDC, Iceberg, PostgreSQL',
-      links: () => 'GitHub: https://github.com/Junwu0615\nLinkedIn: https://www.linkedin.com/in/pc-wu-16a1602a7/\nCake: https://www.cake.me/me/Ping-Chun-Wu',
+      stack: () => '★ Platform Engineering : Kubernetes / K3s / Helm / GitOps / ArgoCD\n / Cluster Operations / Platform Governance / Platform Automation\n / Workload Scheduling / Cluster Bootstrap / Node Lifecycle Management\n\n★ Infrastructure Engineering : Terraform / Ansible / Linux\n / Declarative Infrastructure / Infrastructure Standardization\n / Configuration Management / Idempotent Automation\n / Provisioning Automation / Environment Provisioning\n\n★ Observability & Reliability : Prometheus / Grafana / Loki / Tempo\n / Monitoring / Logging / Distributed Tracing / Incident Response\n / Failure Recovery / Fault Injection / Service Recovery\n\n★ DevOps & Delivery : GitLab CI/CD / Docker / Git / Bash\n / Continuous Integration / Continuous Delivery ( CI/CD )\n / Deployment Automation / Release Management / ApplicationSet\n\n★ Data Platform : Apache Airflow / ETL\n / PostgreSQL / Oracle / Microsoft SQL Server\n / Data Pipeline / Workflow Orchestration\n\n★ Software Engineering : Python / SQL\n / Automation Framework / Reusable Components',
+      links: () => 'GitHub: https://github.com/Junwu0615\nLinkedIn: https://www.linkedin.com/in/pc-wu-16a1602a7/\nCake: https://www.cake.me/me/Ping-Chun-Wu\nAnalytics: https://github.com/Junwu0615/Junwu0615-Analytics',
       clear: () => { cliOutput.innerHTML = ''; return null; }
     };
 
