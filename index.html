@@ -671,14 +671,21 @@
     }
 
     .architecture-diagram {
-      width: 100%;
+      width: 80%;
       height: auto;
+      display: block;
+      margin-inline: auto;
       border-radius: var(--radius-md);
-      filter: invert(0.92) hue-rotate(180deg) contrast(1.05);
+      /*filter: invert(0.92) hue-rotate(180deg) contrast(1.05);*/
     }
 
     /* Mini-CLI */
     .cli-terminal {
+      min-height: 450px; /* 取消註解，直接控制整台終端機的預設高度 */
+      max-height: 600px; /* 限制最大高度，避免輸入太多指令時整頁無限拉長 */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background: var(--color-bg-secondary);
       border: 1px solid var(--color-border);
       border-radius: var(--radius-lg);
@@ -687,7 +694,8 @@
 
     .cli-output {
       padding: var(--space-lg);
-      max-height: 280px;
+      max-height: 400px;
+      flex: 1;
       overflow-y: auto;
       font-size: var(--font-size-sm);
     }
@@ -742,6 +750,10 @@
     .footer-text {
       font-size: var(--font-size-xs);
       color: var(--color-text-muted);
+    }
+
+    .cli-section {
+      min-height: 70vh; /* 確保底部有足夠空間讓區塊能捲動到視窗頂部 */
     }
   </style>
 </head>
@@ -820,10 +832,11 @@
     </div>
 
     <div id="hero-content" class="hero-content">
-      <h1 id="hero-title" class="hero-name">Ping Chun (Junwu0615)</h1>
+      <h1 id="hero-title" class="hero-name">Ping Chun</h1>
       <p class="hero-role">Data Engineer → Platform Engineering</p>
       <p class="hero-slogan">Platform Engineering Through Evolution, Not Accumulation</p>
       <div class="hero-cta">
+        <a href="#projects" class="cta-btn cta-primary">Explore Projects</a>
         <a href="#architecture" class="cta-btn cta-primary">Explore Architecture</a>
 <!--        <a href="https://github.com/Junwu0615" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">GitHub</a>-->
 <!--        <a href="https://www.linkedin.com/in/pc-wu-16a1602a7/" target="_blank" rel="noopener noreferrer" class="cta-btn cta-secondary">LinkedIn</a>-->
@@ -904,7 +917,7 @@
       <a href="https://www.cake.me/me/Ping-Chun-Wu" target="_blank" rel="noopener noreferrer">Cake</a>
       <a href="https://github.com/Junwu0615/Junwu0615-Analytics" target="_blank" rel="noopener noreferrer">Analytics</a>
     </div>
-    <p class="footer-text">© <span id="year"></span> Ping Chun (Junwu0615) · Self-Hosted Reference Architecture</p>
+    <p class="footer-text">© <span id="year"></span> Ping Chun (Junwu0615) · Platform Engineering Reference Architecture</p>
   </footer>
 
   <script>
@@ -915,7 +928,7 @@
       { name: 'PG-Sentinel', slug: 'PG-Sentinel', category: 'mlops', badge: 'MLOps & AIOps', desc: 'AIOps, chaos engineering, reliability validation, and automated remediation.' },
       { name: 'PG-Infrastructure', slug: 'PG-Infrastructure', category: 'devops', badge: 'DevOps & IaC', desc: 'GKE, Kubernetes, Terraform, Ansible, Docker, and idempotent Makefile automation.' },
       { name: 'PG-APP-Core', slug: 'PG-APP-Core', category: 'data-engineering', badge: 'Data Engineering', desc: 'Core application runtime built on PG-Shared-Lib and Python.' },
-      { name: 'PG-Shared-Lib', slug: 'PG-Shared-Lib', category: 'devops', badge: 'DevOps & IaC', desc: 'Shared EntryPoint, Logger, MqttServer, and Kafka producer/consumer managers.' },
+      { name: 'PG-Shared-Lib', slug: 'PG-Shared-Lib', category: 'devops', badge: 'DevOps & IaC', desc: 'Codebase ( Shared EntryPoint, Logger, MqttServer, and Kafka producer/consumer managers. )' },
       { name: 'PG-Airflow-DAGs', slug: 'PG-Airflow-DAGs', category: 'data-engineering', badge: 'Data Engineering', desc: 'Orchestrated Airflow DAG workflows and scheduled data processing pipelines.' },
       { name: 'PG-Edge-Container', slug: 'PG-Edge-Container', category: 'data-engineering', badge: 'Data Engineering', desc: 'Lightweight edge container workload with MQTT and SQLite persistence.' },
       { name: 'PG-Analytics', slug: 'PG-Analytics', category: 'analytics', badge: 'Analytics', desc: 'GitHub traffic, repository metrics, growth trends, and historical statistics.' }
@@ -949,8 +962,8 @@
     const bootEl = document.getElementById('boot-sequence');
     const lines = [
       '$ init --mode=platform-evolution',
-      '[OK] Loaded Data Engineering foundation',
-      '[OK] Mounted self-hosted reference architecture: Platform Genesis',
+      '[OK] Loaded Data Engineering Foundation',
+      '[OK] Mounted Platform Engineering Reference Architecture: Platform Genesis',
       '$ echo "Platform Engineering Through Evolution, Not Accumulation"'
     ];
     (async function runBoot() {
